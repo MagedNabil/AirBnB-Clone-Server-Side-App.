@@ -1,0 +1,208 @@
+<!--
+
+new messages
+
+// create message
+post => "http://localhost:4000/messages/"       ==>>  returns message object
+ex:
+{
+        "from": "senderID",
+        "to": "receiverID",
+        "text": "pla pla pla"
+}
+
+//get all sended messages by sender id  => fromID
+get => "http://localhost:4000/messages/sender/:id"    ==>>  returns array of message objects send by user " from "
+
+ex:
+"http://localhost:4000/messages/sender/62438c51eaa5c7cfa20268cb"
+
+//get all recevied messages   => toID
+get => "http://localhost:4000/messages/receiver/:id"   ==>>  returns array of message objects received by user " to "
+
+ex:
+"http://localhost:4000/messages/receiver/62438c51eaa5c7cfa20268cb"
+
+note:  use  getHours(); to get the hour of the message from date
+
+host => 622098a84f93748a635ffde2
+user => 6235c03c0bdff8ed407d0f8a
+__________________________________________________________________________________________
+__________________________________________________________________________________________
+
+new review
+
+// create review
+post => "http://localhost:4000/review/"     ==>>  returns review object
+
+ex:
+{
+        "userId": "userID",
+        "propId": "propID",
+        "rate": " 1 or 2 or 3 or 4 or 5",
+        "description": "pla pla pla"
+}
+
+// get all reviews by user id  => userId
+get => "http://localhost:4000/review/user/:id"    ==>>  returns array of review objects by user " userId "
+
+ex: "http://localhost:4000/review/user/62438c51eaa5c7cfa20268cb"
+
+//get all reviews by prop id  => propId
+get => "http://localhost:4000/review/prop/:id"        ==>>  returns array of review objects by property " propId "
+
+ex: "http://localhost:4000/review/prop/62438c51eaa5c7cfa20268cb"
+
+note : use .getLength() to get the length of the array = reviews number
+
+//get prop rate
+get => "http://localhost:4000/review/prop/rate/:id"    ==>>  returns the rate of the property
+
+
+__________________________________________________________________________________________
+__________________________________________________________________________________________
+old message
+
+// create message
+post => "http://localhost:4000/message/"
+//get all messages for specific conversation
+get => "http://localhost:4000/message/:conversationId"
+
+_______________________________________________________
+
+conversation
+
+// create conversation
+post => "http://localhost:4000/conversation/"
+//get all conversations for specific user
+get => "http://localhost:4000/conversation/:userId"
+//get conversation between two users
+get => "http://localhost:4000/conversation/:firstUserId/:secondUserId"
+
+_______________________________________________________
+
+report
+
+// create report
+post => "http://localhost:4000/report/"
+//get all reports
+get => "http://localhost:4000/report/"
+//main router
+//get a specific type of report for specific target
+get => "http://localhost:4000/report/type/:type/target/:id"
+//get a specific type of report for specific reporter
+get => "http://localhost:4000/report/type/:type/reporter/:id"
+//other routers
+//get all types of reports for specific target
+get => "http://localhost:4000/report/target/:id"
+//get all types of reports for specific reporter
+get => "http://localhost:4000/report/reporter/:id"
+
+_______________________________________________________
+
+booking
+
+http://localhost:4000/booking
+method :post
+desc: create reservation
+req: req.body ={
+            property:id
+            host:id
+            guest:id
+	    checkIn:date
+            checkOut:date
+        }
+res : booking
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//get all bookings
+get => "http://localhost:4000/booking/"
+//get all bookings for specific property
+get => "http://localhost:4000/booking/list/:Id"
+//get all bookings for specific host
+get => "http://localhost:4000/booking/host/:Id"
+//update booking
+patch => "http://localhost:4000/booking/update-booking/:Id"
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+http://localhost:4000/booking/id
+method : get
+desc : aprrove booking
+req : req.params = booking id
+method : post
+desc : cancel booking
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>________________________________________________________
+
+property
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+http://localhost:4000/upload/:id
+method : patch
+desc : upload listing imageCover and images
+req:req.params.id = listing id , req.file = {imageCover:onephoto , images : [max 7 ]
+res : listing
+download path :  http://localhost:4000/puplic/img/listing/filename___________________________________________
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+http://localhost:4000/
+post > create new property
+req : req.headers = {autherization : token }, req.body = propety
+
+'/:id
+patch edit  prop
+delete delete  prop
+user
+http://localhost:4000/user/update-user/:id
+method : patch
+desc : upload user photo
+req : req.params = user id ,form-data =>  req.file.photo = uploaded photo
+res : status , user
+download path :  http://localhost:4000/puplic/img/users/filename
+
+
+
+user sign up : http://localhost:4000/user/sign-up
+post > create new user
+
+
+user sign in : http://localhost:4000/user/login
+post > login user and get user token
+res : {token}
+
+user data : http://localhost:4000/user
+get > req.headers : { autherization : token }
+get user details
+
+user listings :  http://localhost:4000/user/my-prop
+post > req.headers : { autherization : token }
+get user listings
+
+dashboard :
+
+__________________________________________________________
+listing:=>>>>>
+ http://localhost:4000/list
+
+ post => "http://localhost:4000/list/new/:id" id of host }
+ ex :req.body= {
+     "name":"country side house",
+        "city":"london",
+        "bathrooms":2,
+        "bedrooms":5,
+        "neighbourhood_cleansed":"hamada",
+        "summary":"good looking property",
+        "number_of_reviews":4,
+        "xl_picture_url":"",
+        "amenities":["wifi","land line"],
+        "host_thumbnail_url":"",
+        "host_name":"host",
+        "price":250,
+        "guests_included":4,
+        "description":"listing disscsas",
+        "geo_location":[31.00,30.00]
+      }
+patch=> "http://localhost:4000/list/:id"    edit listing by id
+    same as craete without token
+delete+> "http://localhost:4000/list/:id" delete
+
+get "http://localhost:4000/list  get all lists
+get "http://localhost:4000/list/:id"  by list id
+get "http://localhost:4000/list/host/:id"  get listings of host
+ -->
